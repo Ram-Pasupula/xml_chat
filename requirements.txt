@@ -1,0 +1,6 @@
+streamlit
+python-multipart
+transformers[torch]
+torch==2.0.1+cu118 -f https://download.pytorch.org/whl/torch_stable.html
+optimum
+pip install flash_attn

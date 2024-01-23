@@ -1,0 +1,18 @@
+FROM nvidia/cuda:12.2.0-base-ubi7
+FROM python:3.10-slim
+
+
+WORKDIR /app
+
+# Copy the requirements file to the container
+#COPY ~/Downloads/text-embeddings-router .
+
+
+# Copy the application files to the container
+COPY . .
+
+# Expose the port on which the FastAPI application will run
+EXPOSE 8080
+
+# Command to run the application
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
