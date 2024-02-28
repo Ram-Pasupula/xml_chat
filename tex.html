@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colorful Textbox</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        #textbox {
+            width: 300px;
+            height: 200px;
+            overflow-y: auto;
+            border: 2px solid #ccc;
+            padding: 10px;
+        }
+
+        .speaker {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+
+<div id="textbox" contenteditable="true"></div>
+
+<script>
+    const textbox = document.getElementById('textbox');
+    const maxLines = 10;
+
+    function updateTextbox(content) {
+        textbox.innerHTML = content;
+
+        // Scroll to the bottom
+        textbox.scrollTop = textbox.scrollHeight;
+    }
+
+    function appendText(text) {
+        const lines = textbox.innerText.split('\n');
+        if (lines.length >= maxLines) {
+            // Remove the first line if the maximum number of lines is reached
+            lines.shift();
+        }
+
+        const newText = lines.join('\n') + text;
+        updateTextbox(newText);
+    }
+
+    textbox.addEventListener('input', function() {
+        const text = textbox.innerText;
+        const formattedText = text.replace(/SPEAKER/g, '<span class="speaker">SPEAKER</span>');
+        updateTextbox(formattedText);
+    });
+</script>
+
+</body>
+</html>

@@ -77,3 +77,19 @@ def file_upload(file_input):
             index_name="text_file",
         )
         return "Text file uploaded successfully."
+    
+    
+    
+def get_tgi_llm():
+    from langchain_community.llms import HuggingFaceTextGenInference
+    llm = HuggingFaceTextGenInference(
+        inference_server_url="http://localhost:8080/",
+        max_new_tokens=1024,
+        top_k=10,
+        top_p=0.95,
+        typical_p=0.95,
+        temperature=0.01,
+        repetition_penalty=1.03,
+    )
+    logger.info("Language model loaded.")
+    return llm
